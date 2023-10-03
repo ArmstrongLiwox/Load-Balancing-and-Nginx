@@ -175,14 +175,14 @@ sudo vi /etc/nginx/conf.d/loadbalancer.conf
         upstream backend_servers {
 
             # your are to replace the public IP and Port to that of your webservers
-            server 127.0.0.1:8000; # public IP and port for webserser 1
-            server 127.0.0.1:8000; # public IP and port for webserver 2
+            server 18.130.214.86:8000; # public IP and port for webserser 1
+            server 52.56.226.226:8000; # public IP and port for webserver 2
 
         }
 
         server {
             listen 80;
-            server_name <your load balancer's public IP addres>; # provide your load balancers public IP address
+            server_name 18.135.29.30; # provide your load balancers public IP address
 
             location / {
                 proxy_pass http://backend_servers;
@@ -210,4 +210,6 @@ sudo systemctl restart nginx
 
 > Paste public ip of Nginx Load balancer in web.
 
+![load balance](<images/final result.png>)
 
+# Thank You
