@@ -1,5 +1,6 @@
 # Load-Balancing-and-Nginx - ***Armstrong***
-Introduction to Load Balancing and Nginx
+
+## Introduction to Load Balancing and Nginx
 
 ![laod balancing](<images/load balancing.png>)
 
