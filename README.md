@@ -212,4 +212,6 @@ sudo systemctl restart nginx
 
 ![load balance](<images/final result.png>)
 
+![load blance 2](<images/final result 2.png>)
+
 # Thank You
