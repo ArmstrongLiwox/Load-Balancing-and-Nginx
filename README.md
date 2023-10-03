@@ -139,3 +139,75 @@ sudo systemctl restart apache2
 
 ![web 2](<images/web 2.png>)
 
+## Step 5:
+
+> Configuring Nginx as a Load Balancer
+
+> Provision a new EC2 instance
+
+![3rd instance](<images/3rd instance.png>)
+
+>SSH into instance
+
+> Install Nginx
+
+```
+sudo apt update -y && sudo apt install nginx -y
+```
+
+> Verify Nginx is installed and working
+
+```
+sudo systemctl status nginx
+```
+![install nginx](<images/instal nginx.png>)
+
+
+> Open Nginx configuration file
+
+```
+sudo vi /etc/nginx/conf.d/loadbalancer.conf
+```
+> Paste configuration into file
+
+```
+        
+        upstream backend_servers {
+
+            # your are to replace the public IP and Port to that of your webservers
+            server 127.0.0.1:8000; # public IP and port for webserser 1
+            server 127.0.0.1:8000; # public IP and port for webserver 2
+
+        }
+
+        server {
+            listen 80;
+            server_name <your load balancer's public IP addres>; # provide your load balancers public IP address
+
+            location / {
+                proxy_pass http://backend_servers;
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            }
+        }
+```
+
+![nginx file configure](<images/nginx file configure.png>)
+
+> Test configuration
+
+```
+sudo nginx -t
+```
+![nginx successful](<images/nginx successful.png>)
+
+> Restart Nginx
+
+```
+sudo systemctl restart nginx
+```
+
+> Paste public ip of Nginx Load balancer in web.
+
+
